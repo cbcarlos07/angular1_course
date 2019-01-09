@@ -1,1 +1,31 @@
-<h1>Dashboard</h1>
+<content-header name="Dashboard" small="Versao 1.0"></content-header>   
+<section class="content" ng-controller="DashboardCtrl as ctrl">
+    <!-- Box -->
+    <value-box 
+      grid="4" 
+      color-class="bg-green"
+      icon-class="fa fa-bank"
+      value="R$ {{ ctrl.credit | number: 2 }}"
+      text="Total de Créditos" 
+    ></value-box>
+    <!-- /Box -->
+    <!-- Box -->
+    <value-box 
+      grid="4" 
+      color-class="bg-red"
+      icon-class="fa fa-credit-card"
+      value="R$ {{ ctrl.debt | number: 2 }}"
+      text="Total de Débitos" 
+    ></value-box>
+    <!-- /Box -->
+    <value-box 
+      grid="4" 
+      color-class="bg-blue"
+      icon-class="fa fa-money"
+      value="R$ {{ ctrl.total | number: 2 }}"
+      text="Valor consolidado" 
+    ></value-box>
+    <!-- /Box -->
+    
+    
+</section>
