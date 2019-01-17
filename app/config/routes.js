@@ -1,5 +1,5 @@
 
-
+(function(){
 angular.module('primeiraApp').config([
     '$stateProvider',
     '$urlRouterProvider',
@@ -15,3 +15,4 @@ angular.module('primeiraApp').config([
         $urlRouterProvider.otherwise('/dashboard')
     }
 ])
+})()
