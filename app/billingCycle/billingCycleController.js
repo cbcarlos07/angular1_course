@@ -7,10 +7,11 @@
         const vm = this
         vm.create = function(){
             const url = 'http://localhost:3003/api/billingCycles'
-            $http.post(url, vm.billingCycle).success(function(response){
+            $http.post(url, vm.billingCycle).then(function(response){
                 vm.billingCyle = {}
                 console.log('Sucesso!')
             })
+          
         }
     }
-})
+})()
