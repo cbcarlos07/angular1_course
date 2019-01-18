@@ -5,7 +5,8 @@
           label: '@',
           grid: '@',
           placeholder: '@',
-          type: '@'
+          type: '@',
+          model: '='
       },
       controller: [
           'gridSystem',
@@ -17,7 +18,7 @@
         <div class="{{ $ctrl.gridClasses }}">
             <div class="form-group">
                 <label for="{{ $ctrl.id }}">{{ $ctrl.label }}</label>
-                <input type="{{ $ctrl.type }}" id="{{ $ctrl.id }}" class="form-control" placeholder="{{ $ctrl.placeholder }}">
+                <input type="{{ $ctrl.type }}" id="{{ $ctrl.id }}" class="form-control" placeholder="{{ $ctrl.placeholder }}" ng-model="$ctrl.model">
             </div>
         </div>
       `
