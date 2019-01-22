@@ -10,7 +10,7 @@
         vm.refresh = function(){
            $http.get(url).then(function(response){
                vm.billingCycle = {}
-               vm.billingCycle = response.data
+               vm.billingCycles = response.data
            }) 
         }
 
