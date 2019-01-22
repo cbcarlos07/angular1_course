@@ -11,12 +11,8 @@
         vm.refresh = function(){
            $http.get(url).then(function(response){
                vm.billingCycle = {}
-
-
-
                vm.billingCycle = response.data
-               tabs.show(vm, {tabList: true, tabCreate: true})               
-
+               tabs.show(vm, {tabList: true, tabCreate: true})   
            }) 
         }
 
