@@ -2,20 +2,26 @@
     angular.module('primeiraApp').controller('BillingCycleCtrl',[  
         '$http',
         'msgs',
+        'tabs',
         BillingCycleController
     ])
-    function BillingCycleController($http, msgs){
+    function BillingCycleController($http, msgs, tabs){
         const vm = this
         const url = 'http://localhost:3003/api/billingCycles'
         vm.refresh = function(){
            $http.get(url).then(function(response){
                vm.billingCycle = {}
-               vm.billingCycles = response.data
+
+
+
+               vm.billingCycle = response.data
+               tabs.show(vm, {tabList: true, tabCreate: true})               
+
            }) 
         }
 
         vm.create = function(){
-           
+            
             $http.post(url, vm.billingCycle).then(function(response){
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
