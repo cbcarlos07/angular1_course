@@ -12,12 +12,11 @@
            $http.get(url).then(function(response){
                vm.billingCycle = {}
                vm.billingCycle = response.data
-               tabs.show(vm, {tabList: true, tabCreate: true})               
+               tabs.show(vm, {tabList: true, tabCreate: true})   
            }) 
         }
 
         vm.create = function(){
-            
             $http.post(url, vm.billingCycle).then(function(response){
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
@@ -26,6 +25,16 @@
                 console.log('error', response)
                 msgs.addError( response.data.errors )                
             })          
+        }
+
+        vm.showTabUpdate = function(billingCycle){
+            vm.billingCycle = billingCycle
+            tabs.show(vm,{ tabUpdate: true })
+        }
+
+        vm.showTabDelete = function(billingCycle){
+            vm.billingCycle = billingCycle
+            tabs.show(vm, {tabDelete: true})
         }
         vm.refresh()
     }
