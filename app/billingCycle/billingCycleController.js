@@ -11,7 +11,8 @@
         vm.refresh = function(){
            $http.get(url).then(function(response){
                vm.billingCycle = {credits: [{}], debts: [{}]}
-               vm.billingCycle = response.data
+               vm.billingCycles = response.data
+               
                tabs.show(vm, {tabList: true, tabCreate: true})   
            }) 
         }
