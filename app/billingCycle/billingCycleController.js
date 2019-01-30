@@ -17,7 +17,12 @@
         }
 
         vm.create = function(){
-            $http.post(url, vm.billingCycle).then(function(response){
+            var billingCycle = {
+                                name: vm.billingCycle.name,
+                                month: vm.billingCycle.month,
+                                year: vm.billingCycle.year
+                               }
+            $http.post(url, billingCycle).then(function(response){
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
                 console.log('Sucesso!')
