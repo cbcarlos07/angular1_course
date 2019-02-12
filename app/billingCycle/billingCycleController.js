@@ -1,3 +1,5 @@
+import { builtinModules } from "module";
+
 (function(){
     angular.module('primeiraApp').controller('BillingCycleCtrl',[  
         '$http',
@@ -11,17 +13,13 @@
         vm.refresh = function(){
            $http.get(url).then(function(response){
                vm.billingCycle = {}
-               vm.billingCycle = response.data
+               vm.billingCycles = response.data
                tabs.show(vm, {tabList: true, tabCreate: true})   
            }) 
         }
 
         vm.create = function(){
-            var billingCycle = {
-                                name: vm.billingCycle.name,
-                                month: vm.billingCycle.month,
-                                year: vm.billingCycle.year
-                               }
+           
             $http.post(url, billingCycle).then(function(response){
                 vm.refresh()
                 msgs.addSuccess('Operação realizada com sucesso!')
@@ -53,6 +51,35 @@
                 msgs.addError(response.data.errors)
             })
         }
+
+        vm.addCredit = function(index){
+            vm.billingCycle.credits.splice(index + 1, 0, {})
+        }
+        
+        vm.cloneCredit = function(index, {name, value}){
+            vm.billingCycle.credits.splice(index + 1, 0, {name, value})
+        }
+        
+        vm.deleteCredit = function(index){
+            if(vm.billingCycle.credits.length > 1){
+                vm.billingCycle.credits.splice(index, 1)
+            }
+        }
+
+        vm.addDebt = function(index){
+            vm.billingCycle.debts.splice(index + 1, 0, {})
+        }
+
+        vm.cloneDebt = function(index, {name, value, status}){
+            vm.billingCycle.debts.splice(index, 0, {name, value, status})
+        }
+
+        vm.deleteDebt = function(index){
+            if(vm.billingCycle.debts.length > 1 ){
+                vm.billingCycle.debts.splice(index, 1)
+            }
+        }
+
         vm.refresh()
     }
 })()
