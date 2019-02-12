@@ -1,4 +1,4 @@
-import { builtinModules } from "module";
+
 
 (function(){
     angular.module('primeiraApp').controller('BillingCycleCtrl',[  
@@ -12,7 +12,7 @@ import { builtinModules } from "module";
         const url = 'http://localhost:3003/api/billingCycles'
         vm.refresh = function(){
            $http.get(url).then(function(response){
-               vm.billingCycle = {}
+               vm.billingCycle = {credits: [{}], debts: [{}]}
                vm.billingCycles = response.data
                tabs.show(vm, {tabList: true, tabCreate: true})   
            }) 
@@ -25,7 +25,7 @@ import { builtinModules } from "module";
                 msgs.addSuccess('Operação realizada com sucesso!')
                 console.log('Sucesso!')
             }).catch(function(response){
-                console.log('error', response)
+               // console.log('error', response)
                 msgs.addError( response.data.errors )                
             })          
         }
@@ -38,6 +38,16 @@ import { builtinModules } from "module";
         vm.showTabDelete = function(billingCycle){
             vm.billingCycle = billingCycle
             tabs.show(vm, {tabDelete: true})
+        }
+
+        vm.update = function(){
+            const updateUrl = `${url}/${vm.billingCycle._id}`
+            $http.put(updateUrl, vm.billingCycle).then(function(response){
+                vm.refresh()
+                msgs.addSuccess('Operação realizada com sucesso')
+            }).catch(function(response){
+                msgs.addError( response.data.errors )
+            })
         }
 
         vm.delete =  function() {
